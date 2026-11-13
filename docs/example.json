@@ -1,0 +1,13 @@
+{
+  "text": "She reads data; he reads the data stream.\nCase-sensitive patterns keep She separate from she.\nushers and his notes cross chunk boundaries. 🛰🛰\nA data stream carries hers and she carries data.",
+  "patterns": [
+    "he",
+    "she",
+    "his",
+    "hers",
+    "🛰",
+    "data",
+    "data stream"
+  ],
+  "chunkSize": 8
+}
