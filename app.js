@@ -275,4 +275,13 @@ $('session-file').addEventListener('change', async () => {
     $('session-file').value = '';
   }
 });
+for (const button of document.querySelectorAll('[data-view]'))
+  button.addEventListener('click', () => {
+    for (const name of ['matches', 'chunks', 'automaton']) {
+      $(name + '-view').hidden = name !== button.dataset.view;
+      document
+        .querySelector(`[data-view="${name}"]`)
+        .setAttribute('aria-pressed', String(name === button.dataset.view));
+    }
+  });
 scan(fixture());

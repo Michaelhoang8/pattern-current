@@ -4,6 +4,8 @@ A streaming multi-pattern search workbench using Aho–Corasick. Inspect overlap
 
 ![Pattern Current](docs/workbench.png)
 
+Patterns and source text share an editor workspace. Matches, chunk state, and automaton details have separate output views; the match view pairs per-pattern counts with highlighted source context.
+
 ## Run
 
 Requires Python 3.10+. No runtime dependencies or API keys.

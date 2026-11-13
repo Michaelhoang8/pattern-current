@@ -8,21 +8,12 @@
   </head>
   <body>
     <header>
-      <a href="#">pattern current <span>≈</span></a
-      ><span>MULTI-PATTERN SEARCH / STREAMING AUTOMATA</span
-      ><label class="upload"
+      <h1>Pattern Current</h1>
+      <label class="upload"
         >Open session<input id="session-file" type="file" accept=".json"
       /></label>
     </header>
     <main>
-      <section class="hero">
-        <p>FIND THE THREADS IN THE STREAM</p>
-        <h1>Many patterns.<br />One pass.</h1>
-        <div>
-          Follow overlapping matches through chunk boundaries.<br />Keep the counts exact, even when
-          the preview fills up.
-        </div>
-      </section>
       <section class="inputs">
         <div>
           <label for="patterns">Patterns / one per line</label
@@ -47,9 +38,8 @@
             max="4096"
             step="1"
             value="8" /></label
-        ><button id="scan" class="primary">Scan the stream ↗</button
-        ><button id="cancel" disabled>Cancel</button><button id="sample">Load example</button
-        ><button id="save">Save session</button>
+        ><button id="scan" class="primary">Scan</button><button id="cancel" disabled>Cancel</button
+        ><button id="sample">Load example</button><button id="save">Save session</button>
       </section>
       <p id="status" role="status" aria-live="polite"></p>
       <section id="results" hidden>
@@ -67,10 +57,15 @@
             ><small id="chunk-count"></small>
           </div>
         </div>
-        <div class="analysis">
+        <nav aria-label="Analysis view">
+          <button data-view="matches" aria-pressed="true">Matches</button
+          ><button data-view="chunks" aria-pressed="false">Chunks</button
+          ><button data-view="automaton" aria-pressed="false">Automaton</button>
+        </nav>
+        <div class="analysis" id="matches-view">
           <section>
             <div class="section-title">
-              <h2>Every pattern, counted</h2>
+              <h2>Pattern counts</h2>
               <button id="csv">Export counts</button>
             </div>
             <div class="table-wrap">
@@ -86,22 +81,22 @@
             </div>
           </section>
           <section>
-            <h2>A match in context</h2>
+            <h2>Match context</h2>
             <label>Previewed match<select id="match"></select></label>
             <p id="match-offset"></p>
             <pre id="context"></pre>
             <p id="preview-note"></p>
           </section>
         </div>
-        <section class="stream">
-          <h2>State carried across chunks</h2>
+        <section class="stream" id="chunks-view" hidden>
+          <h2>Chunk state</h2>
           <label>Trace chunk<select id="trace"></select></label>
           <p id="trace-note"></p>
           <pre id="trace-text"></pre>
           <p id="trace-limit"></p>
         </section>
-        <details>
-          <summary>Automaton inspector</summary>
+        <section id="automaton-view" hidden>
+          <h2>Automaton states</h2>
           <p>
             State prefixes, failure targets, and inherited pattern outputs. The first 80 states are
             shown; DOT export includes every state and transition.
@@ -120,7 +115,7 @@
             </table>
           </div>
           <button id="dot">Export automaton DOT</button>
-        </details>
+        </section>
         <div class="exports"><button id="report">Export complete analysis</button></div>
       </section>
       <details>
@@ -147,7 +142,6 @@
           browser; save before refreshing.
         </p>
       </details>
-      <footer>EXACT COUNTS · BOUNDED PREVIEWS · INSPECTABLE FAILURE LINKS</footer>
     </main>
     <script type="module" src="app.js"></script>
   </body>
